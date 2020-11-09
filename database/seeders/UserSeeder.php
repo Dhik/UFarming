@@ -14,18 +14,17 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        foreach(range(1,10) as $item)
-    {
-        DB::table('users')->insert([
-            'id' => $item,
-            'name' => "name $item",
-            'email' => "email $item",
-            'profile_picture' => 'dhikri.jpg',
-            'password' => "password $item", 
-            'active_plant' => $item,
-            'location' => "loc $item",
-            'username' => "username $item",
-        ]);
-    }
+        foreach(range(1,10) as $item){
+            DB::table('users')->insert([
+                'id' => $item,
+                'name' => "name $item",
+                'email' => "email $item",
+                'profile_picture' => 'dhikri.jpg',
+                'password' => "password $item", 
+                'active_plant' => $item,
+                'location' => "loc $item",
+                'username' => "username $item",
+            ]);
+        }   
     }
 }
