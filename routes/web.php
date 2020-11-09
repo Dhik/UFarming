@@ -20,5 +20,5 @@ $router->get('/', function () use ($router) {
 $router->post('register', 'AuthController@register');
 $router->post('login', 'AuthController@login');
 
-$router->get('profile/{token}','UserController@profile');
-$router->patch('profile/{token}','UserController@update');
+$router->get('profile','UserController@profile');
+$router->patch('profile','UserController@update');

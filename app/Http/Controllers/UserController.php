@@ -9,7 +9,15 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-  public function profile(Request $request){
+ public function __construct()
+  {
+    $this->middleware('auth');
+  }
+ public function profile()
+  {
+    return response()->json(['user' => Auth::user()], 200);
+  }
+ /* public function profile(Request $request){
     $token = $request->bearerToken();
     $data = User::select('name','foto')
                 ->where('remember_token', $token)
@@ -26,10 +34,10 @@ class UserController extends Controller
           'message'=>'Unauthorized'
       ], 401); 
     }
-  }
-  public function update(Request $request, $id)
+  }*/
+  public function update(Request $request)
     {
-      $user = User::where('id',$id)->first();
+      $user = User::where('id', Auth::user()->id)->first();
       $user->username = $request->username;
       $user->name = $request->name;
       $user->active_plant = $request->active_plant;
