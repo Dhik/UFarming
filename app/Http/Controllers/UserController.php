@@ -35,8 +35,6 @@ class UserController extends Controller
     $user->username = $request->username;
     $user->password = $request->password;
     
-    
-    
     if(@$request->email != $user->email) {
       $user->email = $request->email;
     }
@@ -49,16 +47,17 @@ class UserController extends Controller
   }
   public function update_picture(Request $request) {
     $file = $request->file('foto');
-    $nama_foto = time()."_".
+    $nama_foto = time().'.'.$file->getClientOriginalExtension();
     $tujuan_upload = 'data_file';
  
-      // upload file
-    $file->move($tujuan_upload,$file->getClientOriginalName());
+    // upload file
+    $file->move($tujuan_upload,$nama_foto);
 
     $user = User::where('id', Auth::user()->id)->first();
     $user->profile_picture = $nama_foto;
 
     if ($user->save()) {
+      $user->profile_picture = url('data_file')."/".$nama_foto;
       return response()->json(['user' => $user, 'message' => 'User has been updated'], 200);
     }else{
       return response()->json(['message' => 'Failed to update'], 500);
