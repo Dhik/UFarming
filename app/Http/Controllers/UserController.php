@@ -22,13 +22,6 @@ class UserController extends Controller
 
   public function update(Request $request)
   {
-    $file = $request->file('foto');
-    $nama_foto = time()."_".
-    $tujuan_upload = 'data_file';
- 
-      // upload file
-    $file->move($tujuan_upload,$file->getClientOriginalName());
-
     $this->validate($request, [
       'email' => 'required|email',
       'name' => 'required|string',
@@ -41,7 +34,8 @@ class UserController extends Controller
     $user->name = $request->name;
     $user->username = $request->username;
     $user->password = $request->password;
-    $user->profile_picture = $nama_foto;
+    
+    
     
     if(@$request->email != $user->email) {
       $user->email = $request->email;
@@ -53,5 +47,21 @@ class UserController extends Controller
       return response()->json(['message' => 'Failed to update'], 500);
     }
   }
+  public function update_picture(Request $request) {
+    $file = $request->file('foto');
+    $nama_foto = time()."_".
+    $tujuan_upload = 'data_file';
+ 
+      // upload file
+    $file->move($tujuan_upload,$file->getClientOriginalName());
 
+    $user = User::where('id', Auth::user()->id)->first();
+    $user->profile_picture = $nama_foto;
+
+    if ($user->save()) {
+      return response()->json(['user' => $user, 'message' => 'User has been updated'], 200);
+    }else{
+      return response()->json(['message' => 'Failed to update'], 500);
+    }
+  }
 }
