@@ -21,4 +21,4 @@ $router->post('register', 'AuthController@register');
 $router->post('login', 'AuthController@login');
 
 $router->get('profile','UserController@profile');
-$router->patch('profile','UserController@update');
+$router->post('profile','UserController@update');
