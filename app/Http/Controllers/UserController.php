@@ -35,7 +35,9 @@ class UserController extends Controller
     $user->email = $request->email;
     $user->name = $request->name;
     $user->username = $request->username;
-    $user->password = $request->password;
+
+    $plainPassword = $request->password;
+    $user->password = app('hash')->make($plainPassword);
     $user->profile_picture = url('data_file')."/".$user->profile_picture;
     
     if(@$request->email != $user->email) {
