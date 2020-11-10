@@ -18,27 +18,17 @@ class UserController extends Controller
   {
     return response()->json(['user' => Auth::user()], 200);
   }
-  /* public function profile(Request $request){
-     $token = $request->bearerToken();
-     $data = User::select('name','foto')
-                 ->where('remember_token', $token)
-                 ->first();
-     if(!empty($data)){
-       return response()->json([
-           "status" => 200,
-           "data" => $data
-       ], 200);
-     }
-     else{ 
-       return response()->json([
-           "status" => 401,
-           'message'=>'Unauthorized'
-       ], 401); 
-     }
-  }*/
+
 
   public function update(Request $request)
   {
+    $file = $request->file('foto');
+    $nama_foto = time()."_".
+    $tujuan_upload = 'data_file';
+ 
+      // upload file
+    $file->move($tujuan_upload,$file->getClientOriginalName());
+
     $this->validate($request, [
       'email' => 'required|email',
       'name' => 'required|string',
@@ -51,6 +41,7 @@ class UserController extends Controller
     $user->name = $request->name;
     $user->username = $request->username;
     $user->password = $request->password;
+    $user->profile_picture = $nama_foto;
     
     if(@$request->email != $user->email) {
       $user->email = $request->email;
