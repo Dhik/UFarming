@@ -36,6 +36,7 @@ class UserController extends Controller
     $user->name = $request->name;
     $user->username = $request->username;
     $user->password = $request->password;
+    $user->profile_picture = url('data_file')."/".$user->profile_picture;
     
     if(@$request->email != $user->email) {
       $user->email = $request->email;
@@ -47,6 +48,7 @@ class UserController extends Controller
       return response()->json(['message' => 'Failed to update'], 500);
     }
   }
+
   public function update_picture(Request $request) {
     $file = $request->file('foto');
     $nama_foto = time().'.'.$file->getClientOriginalExtension();
