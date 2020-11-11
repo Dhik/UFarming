@@ -17,7 +17,9 @@ class UserController extends Controller
   public function profile()
   {
     $user = Auth::user();
-    $user->profile_picture = url('data_file')."/".$user->profile_picture;
+    if($user->profile_picture != ''){
+      $user->profile_picture = url('data_file')."/".$user->profile_picture;
+    }
     return response()->json(['user' => $user], 200);
   }
 
@@ -38,8 +40,9 @@ class UserController extends Controller
 
     $plainPassword = $request->password;
     $user->password = app('hash')->make($plainPassword);
-    $user->profile_picture = url('data_file')."/".$user->profile_picture;
-    
+    if($user->profile_picture != ''){
+      $user->profile_picture = url('data_file')."/".$user->profile_picture;
+    }
     if(@$request->email != $user->email) {
       $user->email = $request->email;
     }
@@ -63,6 +66,9 @@ class UserController extends Controller
     $user->profile_picture = $nama_foto;
 
     if ($user->save()) {
+      if($user->profile_picture != ''){
+        $user->profile_picture = url('data_file')."/".$user->profile_picture;
+      }
       $user->profile_picture = url('data_file')."/".$nama_foto;
       return response()->json(['user' => $user, 'message' => 'User has been updated'], 200);
     }else{
