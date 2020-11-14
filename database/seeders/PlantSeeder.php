@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 use DB;
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class PlantSeeder extends Seeder
 {
@@ -16,12 +17,18 @@ class PlantSeeder extends Seeder
         foreach(range(1,10) as $item){
             DB::table('plant')->insert([
                 'id' => $item,
-                'nama_tanaman' => "name $item",
-                'jenis' => "jenis $item",
+                'plant_name' => "name $item",
                 'summary' => "ini text summary lorem ipsum sir $item",
                 'growing' => "ini text growing lorem ipsum sir $item",
                 'harvesting' => "ini text harvesting lorem ipsum sir $item",
-                'foto' => "foto $item .jpg",
+                'picture' => "foto_$item.jpg",
+                'category_id' => 1,
+                'type_id' => 1,
+                'stages' => $item,
+                'total_days' => $item + 15,
+                'success_rate' => $item * 10.0,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ]);
         } 
     }
