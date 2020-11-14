@@ -21,12 +21,12 @@ class PlantSeeder extends Seeder
                 'summary' => "ini text summary lorem ipsum sir $item",
                 'growing' => "ini text growing lorem ipsum sir $item",
                 'harvesting' => "ini text harvesting lorem ipsum sir $item",
-                'picture' => "foto_$item.jpg",
+                'picture' => "tomato.png",
                 'category_id' => 1,
                 'type_id' => 1,
                 'stages' => $item,
                 'total_days' => $item + 15,
-                'success_rate' => $item * 10.0,
+                'success_rate' => $item / 10.0,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ]);

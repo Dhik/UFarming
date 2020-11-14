@@ -15,25 +15,35 @@ class PlantController extends Controller
   }
 
   public function list(){
-    $plants = Plant::all();
-    return response()->json($plants, 200);
+    $plants = Plant::select(
+      'plant.id', 'plant_name', 'category_name', 'difficulty', 'picture'
+    )
+    ->join('category', 'category_id', '=', 'category.id')
+    ->get();
+    
+    foreach ($plants as $item) {
+      $item->picture = url('plant')."/".$item->picture;
+    }
+
+    return response()->json([
+      'plants' => $plants, 
+      'message' => 'SUCCESS'
+    ], 200);
   }
 
   public function detail($id) {
-    $plant = Plant::where('id', $id)->first();
-    $response = array(
-      'name'        => $plant->nama_tanaman,
-      'picture'     => $plant->foto,
-      'difficulty'  => 'Easy',
-      'category'    => 'Hydroponic',
-      'type'        => 'Vegetable',
-      'stages'      => 5,
-      'total_days'  => 34,
-      'success_rate'=> 0.87,
-      'summary'     => $plant->summary
-    );
+    $plant = Plant::select(
+      'plant.*', 'category_name', 'type_name'
+    )
+    ->where('plant.id', $id)
+    ->join('category', 'category_id', '=', 'category.id')
+    ->join('type', 'type_id', '=', 'type.id')
+    ->first();
+    
+    $plant->picture = url('plant')."/".$plant->picture;
+
     return response()->json([
-      'plant' => $response, 
+      'plant' => $plant, 
       'message' => 'SUCCESS'
     ], 200);
   }
