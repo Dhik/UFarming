@@ -25,3 +25,4 @@ $router->post('profile','UserController@update');
 $router->post('update_pic','UserController@update_picture');
 
 $router->get('plant','PlantController@list');
+$router->get('plant/detail/{id}','PlantController@detail');
