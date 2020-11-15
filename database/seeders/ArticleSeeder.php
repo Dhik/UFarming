@@ -21,7 +21,7 @@ class ArticleSeeder extends Seeder
                 'desc' => "ini isi article lorem ipsum sir $item",
                 'source' => "ini source article $item",
                 'id_plant' => $item,
-                'foto' => "foto $item .jpg",
+                'foto' => "foto_$item.jpg",
             ]);
         } 
     }
