@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Plant;
+use App\Models\CropStatistic;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -40,9 +41,10 @@ class PlantController extends Controller
     ->join('category', 'category_id', '=', 'category.id')
     ->join('type', 'type_id', '=', 'type.id')
     ->first();
-    
     $plant->picture = url('plant')."/".$plant->picture;
     
+    $statistic = CropStatistic::where('id_plant', $id)->first();
+
     $article = array(
       'title' => 'What is Urban farming',
       'picture' => url('article')."/"."urban-farming.jpg",
@@ -72,25 +74,6 @@ class PlantController extends Controller
         Urban agriculture can change that and in doing so it can take a rightful 
         place is the larger food system.
       '
-    );
-
-    $statistic = array(
-      'germ_days_low' => 6,
-      'germ_days_up' =>  7, 
-      'germ_temperature_low'  => 20,
-      'germ_temperature_up'  => 25,
-      'growth_days_low' => 6,
-      'growth_days_up' => 7,
-      'height_low'  => 30,
-      'height_up'  => 70,
-      'ph_low'  => 6,
-      'ph_up'  => 7,
-      'spacing_low' => 15,
-      'spacing_up' => 25,
-      'temperature_low' => 18,
-      'temperature_up' => 25,
-      'width_low' => 30,
-      'width_up' => 40
     );
 
     return response()->json([
