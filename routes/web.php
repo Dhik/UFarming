@@ -17,6 +17,15 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
+$router->group(['prefix' => 'admin'], function () use ($router) {
+    $router->get('plant', 'Admin\AdminPlantController@index');
+    $router->get('plant/add', 'Admin\AdminPlantController@addPlant');
+    $router->post('plant/store', 'Admin\AdminPlantController@store');
+    $router->get('plant/edit/{id}','Admin\AdminPlantController@editPlant');
+    $router->post('plant/update','Admin\AdminPlantController@update');
+    $router->get('plant/delete/{id}','Admin\AdminPlantController@delete');
+});
+
 $router->post('register', 'AuthController@register');
 $router->post('login', 'AuthController@login');
 
