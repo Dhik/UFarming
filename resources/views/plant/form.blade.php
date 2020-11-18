@@ -43,8 +43,22 @@
         Stages <input type="number" name="stages" required="required"> <br/>
         Total Days <input type="number" name="total_days" required="required"> <br/>
         Success Rate <input type="range" min="1" max="100" value="50" name="success_rate">
-		<input type="submit" value="Save">
-	</form>
+    
+    <h3>Statistic Data</h3>
+
+      Germ Days <input type="text" name="germ_days_low" required="required"> - <input type="text" name="germ_days_up" required="required"> <br/>
+      Germ Temperature <input type="text" name="germ_temperature_low" required="required"> - <input type="text" name="germ_temperature_up" required="required"> <br/>
+      Growth Days <input type="text" name="growth_days_low" required="required"> - <input type="text" name="growth_days_up" required="required"> <br/>
+      Height <input type="text" name="height_low" required="required"> - <input type="text" name="height_up" required="required"> <br/>
+      PH <input type="text" name="pH_low" required="required"> - <input type="text" name="pH_up" required="required"> <br/>
+      Spacing <input type="text" name="spacing_low" required="required"> - <input type="text" name="spacing_up" required="required"> <br/>
+      Temperature <input type="text" name="temperature_low" required="required"> - <input type="text" name="temperature_up" required="required"> <br/>
+      Width <input type="text" name="width_low" required="required"> - <input type="text" name="width_up" required="required"> <br/>
+
+    <br/>
+
+    <input type="submit" value="Save"> 
+  </form>
 
 </body>
 </html>

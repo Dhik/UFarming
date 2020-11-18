@@ -51,14 +51,14 @@
   <h3>Edit Statistic</h3>
 
     @foreach($statistic as $s)
-    Germ Days <input type="text" name="plant_name" required="required" value="{{ $s->germ_days_low}}"> - <input type="text" name="plant_name" required="required" value="{{ $s->germ_days_up}}"> <br/>
-    Germ Temperature <input type="text" name="plant_name" required="required" value="{{ $s->germ_temperature_low}}"> - <input type="text" name="plant_name" required="required" value="{{ $s->germ_temperature_up}}"> <br/>
-    Growth Days <input type="text" name="plant_name" required="required" value="{{ $s->growth_days_low}}"> - <input type="text" name="plant_name" required="required" value="{{ $s->growth_days_up}}"> <br/>
-    Height <input type="text" name="plant_name" required="required" value="{{ $s->height_low}}"> - <input type="text" name="plant_name" required="required" value="{{ $s->height_up}}"> <br/>
-    PH <input type="text" name="plant_name" required="required" value="{{ $s->pH_low}}"> - <input type="text" name="plant_name" required="required" value="{{ $s->pH_up}}"> <br/>
-    Spacing <input type="text" name="plant_name" required="required" value="{{ $s->spacing_low}}"> - <input type="text" name="plant_name" required="required" value="{{ $s->spacing_up}}"> <br/>
-    Temperature <input type="text" name="plant_name" required="required" value="{{ $s->temperature_low}}"> - <input type="text" name="plant_name" required="required" value="{{ $s->temperature_up}}"> <br/>
-    Width <input type="text" name="plant_name" required="required" value="{{ $s->width_low}}"> - <input type="text" name="plant_name" required="required" value="{{ $s->width_up}}"> <br/>
+      Germ Days <input type="text" name="germ_days_low" required="required" value="{{ $s->germ_days_low}}"> - <input type="text" name="germ_days_up" required="required" value="{{ $s->germ_days_up}}"> <br/>
+      Germ Temperature <input type="text" name="germ_temperature_low" required="required" value="{{ $s->germ_temperature_low}}"> - <input type="text" name="germ_temperature_up" required="required" value="{{ $s->germ_temperature_up}}"> <br/>
+      Growth Days <input type="text" name="growth_days_low" required="required" value="{{ $s->growth_days_low}}"> - <input type="text" name="growth_days_up" required="required" value="{{ $s->growth_days_up}}"> <br/>
+      Height <input type="text" name="height_low" required="required" value="{{ $s->height_low}}"> - <input type="text" name="height_up" required="required" value="{{ $s->height_up}}"> <br/>
+      PH <input type="text" name="pH_low" required="required" value="{{ $s->pH_low}}"> - <input type="text" name="pH_up" required="required" value="{{ $s->pH_up}}"> <br/>
+      Spacing <input type="text" name="spacing_low" required="required" value="{{ $s->spacing_low}}"> - <input type="text" name="spacing_up" required="required" value="{{ $s->spacing_up}}"> <br/>
+      Temperature <input type="text" name="temperature_low" required="required" value="{{ $s->temperature_low}}"> - <input type="text" name="temperature_up" required="required" value="{{ $s->temperature_up}}"> <br/>
+      Width <input type="text" name="width_low" required="required" value="{{ $s->width_low}}"> - <input type="text" name="width_up" required="required" value="{{ $s->width_up}}"> <br/>
     @endforeach
 
     <br/>
