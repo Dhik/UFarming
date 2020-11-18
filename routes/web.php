@@ -26,6 +26,15 @@ $router->group(['prefix' => 'admin'], function () use ($router) {
     $router->get('plant/delete/{id}','Admin\AdminPlantController@delete');
 });
 
+$router->group(['prefix' => 'admin'], function () use ($router) {
+    $router->get('article', 'Admin\AdminArticleController@index');
+    $router->get('article/add', 'Admin\AdminArticleController@addArticle');
+    $router->post('article/store', 'Admin\AdminArticleController@store');
+    $router->get('article/edit/{id}','Admin\AdminArticleController@editArticle');
+    $router->post('article/update','Admin\AdminArticleController@update');
+    $router->get('article/delete/{id}','Admin\AdminArticleController@delete');
+});
+
 $router->post('register', 'AuthController@register');
 $router->post('login', 'AuthController@login');
 
