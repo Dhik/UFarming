@@ -16,7 +16,7 @@
     <form action="/admin/plant/update" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="{{ $p->id }}"> <br/>
 
-        Plant Name <input type="text" name="plant_name" required="required" value="{{ $p->plant_name}}"> <br/>
+    Plant Name <input type="text" name="plant_name" required="required" value="{{ $p->plant_name}}"> <br/>
 		Summary <textarea name="summary" required="required">{{ $p->summary}}</textarea> <br/>
 		Growing <textarea name="growing" required="required">{{ $p->growing}}</textarea> <br/>
 		Harvesting <textarea name="harvesting" required="required">{{ $p->harvesting}}</textarea> <br/>
@@ -46,9 +46,24 @@
         Stages <input type="number" name="stages" required="required" value="{{ $p->stages}}"> <br/>
         Total Days <input type="number" name="total_days" required="required" value="{{ $p->total_days}}"> <br/>
         Success Rate <input type="range" min="1" max="100" value="50" name="success_rate">
-		<input type="submit" value="Save">
-	</form>
     @endforeach
 	
+  <h3>Edit Statistic</h3>
+
+    @foreach($statistic as $s)
+    Germ Days <input type="text" name="plant_name" required="required" value="{{ $s->germ_days_low}}"> - <input type="text" name="plant_name" required="required" value="{{ $s->germ_days_up}}"> <br/>
+    Germ Temperature <input type="text" name="plant_name" required="required" value="{{ $s->germ_temperature_low}}"> - <input type="text" name="plant_name" required="required" value="{{ $s->germ_temperature_up}}"> <br/>
+    Growth Days <input type="text" name="plant_name" required="required" value="{{ $s->growth_days_low}}"> - <input type="text" name="plant_name" required="required" value="{{ $s->growth_days_up}}"> <br/>
+    Height <input type="text" name="plant_name" required="required" value="{{ $s->height_low}}"> - <input type="text" name="plant_name" required="required" value="{{ $s->height_up}}"> <br/>
+    PH <input type="text" name="plant_name" required="required" value="{{ $s->pH_low}}"> - <input type="text" name="plant_name" required="required" value="{{ $s->pH_up}}"> <br/>
+    Spacing <input type="text" name="plant_name" required="required" value="{{ $s->spacing_low}}"> - <input type="text" name="plant_name" required="required" value="{{ $s->spacing_up}}"> <br/>
+    Temperature <input type="text" name="plant_name" required="required" value="{{ $s->temperature_low}}"> - <input type="text" name="plant_name" required="required" value="{{ $s->temperature_up}}"> <br/>
+    Width <input type="text" name="plant_name" required="required" value="{{ $s->width_low}}"> - <input type="text" name="plant_name" required="required" value="{{ $s->width_up}}"> <br/>
+    @endforeach
+
+    <br/>
+    
+    <input type="submit" value="Save"> 
+	</form>
 </body>
 </html>

@@ -61,11 +61,13 @@ class AdminPlantController extends Controller
     	$plant = DB::table('plant')->where('id',$id)->get();
         $category = DB::table('category')->get();
         $type = DB::table('type')->get();
+        $statistic = DB::table('crop_statistic')->where('id_plant',$id)->get();
 
         return view('plant/edit',[
             'plant' => $plant,
             'category' => $category,
-            'type'  => $type
+            'type'  => $type,
+            'statistic' => $statistic,
         ]);
     }
 

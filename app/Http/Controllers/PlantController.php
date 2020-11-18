@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Plant;
 use App\Models\CropStatistic;
+use App\Models\Category;
+use App\Models\Article;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -44,38 +46,10 @@ class PlantController extends Controller
     $plant->picture = url('plant')."/".$plant->picture;
     
     $statistic = CropStatistic::where('id_plant', $id)->first();
-
-    $article = array(
-      'title' => 'What is Urban farming',
-      'picture' => url('article')."/"."urban-farming.jpg",
-      'category' => 'General',
-      'author'  => 'beautifulhomes',
-      'timestamp' => Carbon::now()->format('Y-m-d H:i:s'),
-      'description' => '
-        Urban agriculture is often confused with community gardening, 
-        homesteading or subsistence farming. We’re happy to be thought 
-        of in such fine company but the fact is that they are very 
-        different animals. What distinguishes us is that urban agriculture 
-        assumes a level of commerce, the growing of product to be sold as 
-        opposed to being grown for personal consumption or sharing. 
-        In community gardening, there is no such commercial activity. 
-        You don’t have to be a corporation to be an urban farm or 
-        have a large tract of land. An individual, a couple of friends, 
-        a nonprofit entity, or neighborhood group can start and run an 
-        urban farm. There is no one correct sales outlet for an urban farm. 
-        Food can be the sold to restaurants or at a farmers market, 
-        given to a local soup kitchen or church, but the food is raised primarily 
-        to be moved (through some form of commerce) from the grower to the user. 
-        As more of us begin to understand our food system, more of us seek to 
-        have more input into how food is grown, how it is treated after being 
-        harvested and how it moves from one place along the food route to another. 
-        People have begun to understand how far food travels, and that they, 
-        as the consumer, have had no say in what is grown or how it is grown. 
-        Urban agriculture can change that and in doing so it can take a rightful 
-        place is the larger food system.
-      '
-    );
-
+    
+    $category = Category::where('id', $plant->category_id)->first();
+    $article = Article::where('id', $category->article_id)->first();
+    
     return response()->json([
       'plant' => $plant, 
       'article' => $article,
