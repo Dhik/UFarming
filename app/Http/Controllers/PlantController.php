@@ -49,7 +49,8 @@ class PlantController extends Controller
     
     $category = Category::where('id', $plant->category_id)->first();
     $article = Article::where('id', $category->article_id)->first();
-    
+    $article->picture = url('article')."/".$article->picture;
+
     return response()->json([
       'plant' => $plant, 
       'article' => $article,
