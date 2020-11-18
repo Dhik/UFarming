@@ -17,9 +17,22 @@ class ArticleController extends Controller
 
   public function list(){
     $article = Article::all();
+    foreach ($article as $item) {
+      $item->picture = url('article')."/".$item->picture;
+    }
+    
+    return response()->json([
+      'articles' => $article, 
+      'message' => 'SUCCESS'
+    ], 200);
+  }
+
+  public function detail($id) {
+    $article = Article::where('id', $id)->first();
+    $article->picture = url('article')."/".$article->picture;
 
     return response()->json([
-      'plants' => $article, 
+      'article' => $article,
       'message' => 'SUCCESS'
     ], 200);
   }

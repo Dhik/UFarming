@@ -45,4 +45,5 @@ $router->post('update_pic','UserController@update_picture');
 $router->get('plants','PlantController@list');
 $router->get('plants/detail/{id}','PlantController@detail');
 
-$router->get('article','ArticleController@list');
+$router->get('articles','ArticleController@list');
+$router->get('articles/detail/{id}','ArticleController@detail');
