@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class AdminArticleController extends Controller
 {
@@ -40,6 +41,8 @@ class AdminArticleController extends Controller
             'picture' => $nama_foto,
             'source' => $request->source,
             'author' => $request->author,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
                 
     	return redirect('/admin/article');
@@ -68,6 +71,7 @@ class AdminArticleController extends Controller
             'picture' => $nama_foto,
             'source' => $request->source,
             'author' => $request->author,
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
                 
     	return redirect('/admin/article');
