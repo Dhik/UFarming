@@ -5,3 +5,4 @@ Homestead.yaml
 .env
 .htaccess
 .phpunit.result.cache
+/public
