@@ -47,3 +47,6 @@ $router->get('plants/detail/{id}','PlantController@detail');
 
 $router->get('articles','ArticleController@list');
 $router->get('articles/detail/{id}','ArticleController@detail');
+
+$router->post('my_plants', 'MyPlantController@store');
+$router->get('my_plants', 'MyPlantController@list');
