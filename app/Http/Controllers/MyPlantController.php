@@ -26,28 +26,44 @@ class MyPlantController extends Controller
     $result->id = Str::uuid();
     $result->id_user = $user->id;
     $result->id_plant = $request->id_plant;
-    $result->progress = $request->progress;
+    $result->name = $request->name;
+    $result->progress = 0;
     $result->save();
     return response()->json([
         "status" => 201,
         "data" => $result
     ], 201);
   }
+
   public function list() {
       $user = Auth::user();
-      $data = MyPlant::where('id_user',$user->id)->get();
+      $data = MyPlant::select('my_plant.id', 'name', 'plant_name', 'progress', 'picture')
+      ->where('id_user',$user->id)
+      ->join('plant', 'plant.id', '=', 'my_plant.id_plant')
+      ->get();
 
-      if(!$data->isEmpty()){
-        return response()->json([
-          "status" => 200,
-          "data" => $data
+      $tasks = [
+        array(
+          'task' => "Nutrition",
+          'ischeck' => true,
+        ),
+        array(
+          'task' => "Check Water Level",
+          'ischeck' => false,
+        ),
+      ];
+
+      foreach ($data as $item) {
+        $item->picture = url('plant')."/".$item->picture;
+        $item->finish_task = 1;
+        $item->total_task = 12;
+        $item->list_task = $tasks;
+      }
+
+      return response()->json([
+        "status" => 200,
+        "data" => $data
       ], 200);
-      }
-      else{
-        return response()->json([
-          "status" => 401,
-          'message'=>'Unauthorized'
-      ], 401); 
-      }
+
   }
 }

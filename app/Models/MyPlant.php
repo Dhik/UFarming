@@ -25,7 +25,7 @@ class MyPlant extends Model implements AuthenticatableContract, AuthorizableCont
 
     protected $table = 'my_plant';
     protected $fillable = [
-        'id','id_user','id_plant','progress'
+        'id','id_user','id_plant','progress', 'name'
     ];
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
