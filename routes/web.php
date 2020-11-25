@@ -50,3 +50,7 @@ $router->get('articles/detail/{id}','ArticleController@detail');
 
 $router->post('my_plants', 'MyPlantController@store');
 $router->get('my_plants', 'MyPlantController@list');
+
+$router->post('checklist/new', 'ChecklistController@store');
+$router->post('checklist/default', 'ChecklistController@storeDefault');
+$router->put('checklist/check', 'ChecklistController@doCheck');
