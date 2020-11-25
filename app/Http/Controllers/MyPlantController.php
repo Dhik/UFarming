@@ -44,12 +44,12 @@ class MyPlantController extends Controller
 
       $tasks = [
         array(
-          'task' => "Nutrition",
-          'ischeck' => true,
+          'file' => "Nutrition",
+          'is_checked' => true,
         ),
         array(
-          'task' => "Check Water Level",
-          'ischeck' => false,
+          'file' => "Check Water Level",
+          'is_checked' => false,
         ),
       ];
 
