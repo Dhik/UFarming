@@ -28,6 +28,7 @@ class MyPlantController extends Controller
     $result->id_plant = $request->id_plant;
     $result->name = $request->name;
     $result->progress = 0;
+    $result->delete_at = NULL;
     $result->save();
     return response()->json([
         "status" => 201,
@@ -65,5 +66,14 @@ class MyPlantController extends Controller
         "data" => $data
       ], 200);
 
+  }
+  public function delete($id) {
+      $my_plant = MyPlant::find($id);
+    	$my_plant->delete();
+ 
+    	return response()->json([
+        "status" => 200,
+        "data" => $my_plant,
+      ], 200);
   }
 }

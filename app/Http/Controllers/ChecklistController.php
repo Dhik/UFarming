@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Checklist;
+use App\Models\MyPlant;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class ChecklistController extends Controller
 {
@@ -78,6 +80,21 @@ class ChecklistController extends Controller
       $checklist->is_checked = true;
       $checklist->save();
   
+      return response()->json([
+          "status" => 201,
+          "data" => $checklist
+      ], 201);
+    }
+
+    return response()->json([
+        "status" => 400,
+        "messages" => "checklist not found"
+    ], 400);
+  }
+  public function my_plant(Request $request) {
+    $checklist = Checklist::where('id_myplant', $request->id)->get();
+
+    if ($checklist) {
       return response()->json([
           "status" => 201,
           "data" => $checklist

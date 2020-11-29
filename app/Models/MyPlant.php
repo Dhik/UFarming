@@ -8,6 +8,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
@@ -16,6 +17,8 @@ class MyPlant extends Model implements AuthenticatableContract, AuthorizableCont
     use Authenticatable, Authorizable, HasFactory;
     
     public $incrementing = false;
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that are mass assignable.
