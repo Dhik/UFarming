@@ -8,6 +8,7 @@ use App\Models\CropStatistic;
 use App\Models\Category;
 use App\Models\Article;
 use App\Models\MyPlant;
+use App\Models\Checklist;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -28,7 +29,7 @@ class MyPlantController extends Controller
     $result->id_plant = $request->id_plant;
     $result->name = $request->name;
     $result->progress = 0;
-    $result->delete_at = NULL;
+    // $result->delete_at = NULL;
     $result->save();
     return response()->json([
         "status" => 201,
@@ -43,22 +44,24 @@ class MyPlantController extends Controller
       ->join('plant', 'plant.id', '=', 'my_plant.id_plant')
       ->get();
 
-      $tasks = [
-        array(
-          'file' => "Nutrition",
-          'is_checked' => true,
-        ),
-        array(
-          'file' => "Check Water Level",
-          'is_checked' => false,
-        ),
-      ];
+      // $tasks = [
+      //   array(
+      //     'file' => "Nutrition",
+      //     'is_checked' => true,
+      //   ),
+      //   array(
+      //     'file' => "Check Water Level",
+      //     'is_checked' => false,
+      //   ),
+      // ];
 
       foreach ($data as $item) {
         $item->picture = url('plant')."/".$item->picture;
-        $item->finish_task = 1;
-        $item->total_task = 12;
-        $item->list_task = $tasks;
+
+        $checklist = Checklist::where('id_myplant', $item->id);
+        $item->total_task = $checklist->count();
+        $item->finish_task = $checklist->where('is_checked', true)->count();
+        // $item->list_task = $tasks;
       }
 
       return response()->json([

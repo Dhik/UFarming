@@ -57,3 +57,6 @@ $router->put('checklist/check', 'ChecklistController@doCheck');
 $router->get('checklist/{id}', 'ChecklistController@my_plant');
 
 $router->get('myplant/{id}', 'MyPlantController@delete');
+
+$router->post('activity/new', 'ActivityController@store');
+$router->get('activity/{id}', 'ActivityController@list');
