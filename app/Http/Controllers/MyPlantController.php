@@ -29,7 +29,7 @@ class MyPlantController extends Controller
     $result->id_plant = $request->id_plant;
     $result->name = $request->name;
     $result->progress = 0;
-    // $result->delete_at = NULL;
+    $result->is_done = 0;
     $result->save();
     return response()->json([
         "status" => 201,
@@ -78,5 +78,28 @@ class MyPlantController extends Controller
         "status" => 200,
         "data" => $my_plant,
       ], 200);
+  }
+  public function is_done($id) {
+    $status = MyPlant::where('id',$id)->first();
+
+    if ($status) {
+      if ($status->is_done == true) {
+        $status->is_done = false;
+      } else {
+        $status->is_done = true;
+      }
+      
+      $status->save();
+  
+      return response()->json([
+          "status" => 201,
+          "data" => $status
+      ], 201);
+    }
+
+    return response()->json([
+        "status" => 400,
+        "messages" => "checklist not found"
+    ], 400);
   }
 }

@@ -14,7 +14,7 @@ class PlantSeeder extends Seeder
      */
     public function run()
     {
-        foreach(range(1,10) as $item){
+        foreach(range(2,7) as $item){
             DB::table('plant')->insert([
                 'id' => $item,
                 'plant_name' => "name $item",
@@ -22,7 +22,7 @@ class PlantSeeder extends Seeder
                 'growing' => "ini text growing lorem ipsum sir $item",
                 'harvesting' => "ini text harvesting lorem ipsum sir $item",
                 'picture' => "tomato.png",
-                'category_id' => 1,
+                'category_id' => $item,
                 'type_id' => 1,
                 'stages' => $item,
                 'total_days' => $item + 15,
