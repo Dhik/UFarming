@@ -5,6 +5,6 @@ Homestead.yaml
 .env
 .htaccess
 .phpunit.result.cache
-/public/article/
+/public/article
 /public/data_file
-/public/plant/
+/public/plant
