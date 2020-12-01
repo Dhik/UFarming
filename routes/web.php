@@ -60,3 +60,4 @@ $router->delete('myplant/{id}', 'MyPlantController@delete');
 
 $router->post('activity/new', 'ActivityController@store');
 $router->get('activity/{id}', 'ActivityController@list');
+$router->delete('activity/{id}', 'ActivityController@delete');

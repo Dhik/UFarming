@@ -36,4 +36,13 @@ class ActivityController extends Controller
     ], 201);
   }
 
+  public function delete($id) {
+    $activity = Activity::find($id);
+    $activity->delete();
+
+    return response()->json([
+      "status" => 200,
+      "data" => $activity,
+    ], 200);
+  }
 }

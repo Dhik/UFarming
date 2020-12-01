@@ -77,7 +77,12 @@ class ChecklistController extends Controller
     $checklist = Checklist::where('id', $request->id)->first();
 
     if ($checklist) {
-      $checklist->is_checked = true;
+      if ($checklist->is_checked == true) {
+        $checklist->is_checked = false;
+      } else {
+        $checklist->is_checked = true;
+      }
+      
       $checklist->save();
   
       return response()->json([

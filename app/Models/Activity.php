@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Activity extends Model
 {
@@ -12,6 +13,9 @@ class Activity extends Model
      * @var array
      */
     public $incrementing = false;
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
+
     protected $table = 'activity';
     protected $fillable = [
         'id', 'title', 'id_myplant'
