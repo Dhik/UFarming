@@ -37,6 +37,9 @@ $app->withEloquent();
 | your own bindings here if you like or you can make another file.
 |
 */
+$app->bind(Illuminate\Session\SessionManager::class, function ($app) {    
+    return $app->make('session');
+});
 
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
@@ -72,13 +75,16 @@ $app->configure('app');
 |
 */
 
-// $app->middleware([
-//     App\Http\Middleware\ExampleMiddleware::class
-// ]);
+$app->middleware([
+    App\Http\Middleware\ExampleMiddleware::class,
+    'Illuminate\Session\Middleware\StartSession'
+]);
 
 $app->routeMiddleware([
     'auth' => App\Http\Middleware\Authenticate::class,
+    'admin' => App\Http\Middleware\AdminMiddleware::class,
 ]);
+$app->configure('session');
 
 /*
 |--------------------------------------------------------------------------
@@ -96,6 +102,7 @@ $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
 $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
+$app->register(Illuminate\Session\SessionServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes

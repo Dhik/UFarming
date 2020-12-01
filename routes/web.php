@@ -14,25 +14,36 @@
 */
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+    // return $router->app->version();
+    return redirect('/admin/login');
 });
 
 $router->group(['prefix' => 'admin'], function () use ($router) {
-    $router->get('plant', 'Admin\AdminPlantController@index');
-    $router->get('plant/add', 'Admin\AdminPlantController@addPlant');
-    $router->post('plant/store', 'Admin\AdminPlantController@store');
-    $router->get('plant/edit/{id}','Admin\AdminPlantController@editPlant');
-    $router->post('plant/update','Admin\AdminPlantController@update');
-    $router->get('plant/delete/{id}','Admin\AdminPlantController@delete');
-});
+    $router->get('/', 'Admin\AdminAuthController@showFormLogin');
+    $router->get('login', 'Admin\AdminAuthController@showFormLogin');
+    $router->post('login', 'Admin\AdminAuthController@login');
+    $router->get('register', 'Admin\AdminAuthController@showFormRegister');
+    $router->post('register', 'Admin\AdminAuthController@register');
 
-$router->group(['prefix' => 'admin'], function () use ($router) {
-    $router->get('article', 'Admin\AdminArticleController@index');
-    $router->get('article/add', 'Admin\AdminArticleController@addArticle');
-    $router->post('article/store', 'Admin\AdminArticleController@store');
-    $router->get('article/edit/{id}','Admin\AdminArticleController@editArticle');
-    $router->post('article/update','Admin\AdminArticleController@update');
-    $router->get('article/delete/{id}','Admin\AdminArticleController@delete');
+    $router->get('logout', 'Admin\AdminAuthController@logout');
+    
+    $router->group(['middleware' => 'admin'], function ($router) {
+        $router->get('logout', 'Admin\AdminAuthController@logout');
+
+        $router->get('plant', 'Admin\AdminPlantController@index');
+        $router->get('plant/add', 'Admin\AdminPlantController@addPlant');
+        $router->post('plant/store', 'Admin\AdminPlantController@store');
+        $router->get('plant/edit/{id}','Admin\AdminPlantController@editPlant');
+        $router->post('plant/update','Admin\AdminPlantController@update');
+        $router->get('plant/delete/{id}','Admin\AdminPlantController@delete');
+    
+        $router->get('article', 'Admin\AdminArticleController@index');
+        $router->get('article/add', 'Admin\AdminArticleController@addArticle');
+        $router->post('article/store', 'Admin\AdminArticleController@store');
+        $router->get('article/edit/{id}','Admin\AdminArticleController@editArticle');
+        $router->post('article/update','Admin\AdminArticleController@update');
+        $router->get('article/delete/{id}','Admin\AdminArticleController@delete');
+    });
 });
 
 $router->post('register', 'AuthController@register');
