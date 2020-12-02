@@ -86,6 +86,7 @@ class MyPlantController extends Controller
       if ($status->is_done == true) {
         $status->is_done = false;
       } else {
+        $status->progress = 100;
         $status->is_done = true;
       }
       
