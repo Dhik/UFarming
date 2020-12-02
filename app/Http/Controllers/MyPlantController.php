@@ -37,27 +37,31 @@ class MyPlantController extends Controller
     ], 201);
   }
 
+  // Calculate progress, scale 0 - 100
+  function calculateProgress($created_at, $total_days) {
+    $finish = $created_at->addDays($total_days);
+    $now = Carbon::now();
+    $diff = $now->diff($created_at)->days;
+
+    if ($now < $finish)
+      return round($diff / $total_days * 100);
+    else
+      return 100;
+  }
+
   public function list() {
       $user = Auth::user();
-      $data = MyPlant::select('my_plant.id', 'plant.id AS id_plant', 'name', 'plant_name', 'progress', 'picture', 'is_done')
+      $data = MyPlant::select('my_plant.id', 'plant.id AS id_plant', 'name', 
+      'plant_name', 'progress', 'picture', 'is_done', 'my_plant.created_at',
+      'plant.total_days')
       ->where('id_user',$user->id)
       ->join('plant', 'plant.id', '=', 'my_plant.id_plant')
       ->get();
 
-      // $tasks = [
-      //   array(
-      //     'file' => "Nutrition",
-      //     'is_checked' => true,
-      //   ),
-      //   array(
-      //     'file' => "Check Water Level",
-      //     'is_checked' => false,
-      //   ),
-      // ];
-
       foreach ($data as $item) {
         $item->picture = url('plant')."/".$item->picture;
-
+        $item->progress = $this->calculateProgress($item->created_at, $item->total_days);
+        
         $checklist = Checklist::where('id_myplant', $item->id);
         $item->total_task = $checklist->count();
         $item->finish_task = $checklist->where('is_checked', true)->count();

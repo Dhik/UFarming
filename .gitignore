@@ -8,3 +8,4 @@ Homestead.yaml
 /public/article
 /public/data_file
 /public/plant
+/storage/framework/sessions
