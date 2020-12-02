@@ -39,7 +39,7 @@ class MyPlantController extends Controller
 
   public function list() {
       $user = Auth::user();
-      $data = MyPlant::select('my_plant.id', 'plant.id AS id_plant', 'name', 'plant_name', 'progress', 'picture')
+      $data = MyPlant::select('my_plant.id', 'plant.id AS id_plant', 'name', 'plant_name', 'progress', 'picture', 'is_done')
       ->where('id_user',$user->id)
       ->join('plant', 'plant.id', '=', 'my_plant.id_plant')
       ->get();
