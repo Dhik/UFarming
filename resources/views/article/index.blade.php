@@ -8,7 +8,7 @@
 	<h3>Article Data</h3>
 
 	<a href="/admin/article/add"> + Add New Article</a>
-	
+
 	<br/>
 	<br/>
 
@@ -71,10 +71,10 @@
                     <div class="card">
                         <div class="card-header">
                             <a href="/admin/article/add" class="btn btn-primary"> + Add New Article</a>
-                        </div>    
+                        </div>
                     <div class="card-body">
                         <div class="card-body table-responsive p-0">
-                            <table class="table table-hover text-nowrap">
+                            <table class="table table-hover">
                                 <thead>
                                 <tr>
 									<th>Title</th>

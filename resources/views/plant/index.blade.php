@@ -26,10 +26,10 @@
                     <div class="card">
                         <div class="card-header">
                             <a href="/admin/plant/add" class="btn btn-primary"> + Add New Plant</a>
-                        </div>    
+                        </div>
                     <div class="card-body">
                         <div class="card-body table-responsive p-0">
-                            <table class="table table-hover text-nowrap">
+                            <table class="table table-hover">
                                 <thead>
                                 <tr>
 									<th>Plant Name</th>

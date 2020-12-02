@@ -26,10 +26,10 @@
                     <div class="card">
                         <div class="card-header">
                             <a href="/admin/checklist/add/{{ $myplant_id }}" class="btn btn-primary"> + Add New Checklist</a>
-                        </div>    
+                        </div>
                     <div class="card-body">
                         <div class="card-body table-responsive p-0">
-                            <table class="table table-hover text-nowrap">
+                            <table class="table table-hover">
                                 <thead>
                                 <tr>
 									<th>Title</th>
