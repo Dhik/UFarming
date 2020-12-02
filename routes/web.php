@@ -43,6 +43,21 @@ $router->group(['prefix' => 'admin'], function () use ($router) {
         $router->get('article/edit/{id}','Admin\AdminArticleController@editArticle');
         $router->post('article/update','Admin\AdminArticleController@update');
         $router->get('article/delete/{id}','Admin\AdminArticleController@delete');
+
+        $router->get('myplant', 'Admin\AdminMyplantController@index');
+        // $router->get('myplant/add', 'Admin\AdminMyplantController@addPlant');
+        // $router->post('myplant/store', 'Admin\AdminMyplantController@store');
+        // $router->get('myplant/edit/{id}','Admin\AdminMyplantController@editPlant');
+        // $router->post('myplant/update','Admin\AdminMyplantController@update');
+        // $router->get('myplant/delete/{id}','Admin\AdminMyplantController@delete');
+
+        $router->get('checklist/get/{myplant_id}', 'Admin\AdminChecklistController@index');
+        $router->get('checklist/add/{myplant_id}', 'Admin\AdminChecklistController@addChecklist');
+        $router->post('checklist/store', 'Admin\AdminChecklistController@store');
+
+        // $router->get('myplant/edit/{id}','Admin\AdminMyplantController@editPlant');
+        // $router->post('myplant/update','Admin\AdminMyplantController@update');
+        // $router->get('myplant/delete/{id}','Admin\AdminMyplantController@delete');
     });
 });
 
