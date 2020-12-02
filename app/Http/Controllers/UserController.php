@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\MyPlant;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,6 +21,9 @@ class UserController extends Controller
     if($user->profile_picture != ''){
       $user->profile_picture = url('data_file')."/".$user->profile_picture;
     }
+    $user->active_plant = MyPlant::where('id_user', $user->id)
+    ->where('is_done', false)->count();
+
     return response()->json(['user' => $user], 200);
   }
 
