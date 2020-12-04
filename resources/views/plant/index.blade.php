@@ -49,8 +49,8 @@
                                     <tr>
 										<td>{{ $p->plant_name }}</td>
 										<td>{{ substr($p->summary, 0, 100) . "..." }}</td>
-										<td>{{ substr($p->growing) . "..." }}</td>
-										<td>{{ substr($p->harvesting) . "..." }}</td>
+										<td>{{ substr($p->growing, 0, 100) . "..." }}</td>
+										<td>{{ substr($p->harvesting, 0, 100) . "..." }}</td>
             							<td><img src="{{ $p->picture }}" width=200></td>
             							<td>{{ $p->difficulty }}</td>
             							<td>{{ $p->stages }}</td>
