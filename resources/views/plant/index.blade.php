@@ -48,9 +48,9 @@
                                     @foreach($plants as $p)
                                     <tr>
 										<td>{{ $p->plant_name }}</td>
-										<td>{{ $p->summary }}</td>
-										<td>{{ $p->growing }}</td>
-										<td>{{ $p->harvesting }}</td>
+										<td>{{ substr($p->summary, 0, 100) . "..." }}</td>
+										<td>{{ substr($p->growing) . "..." }}</td>
+										<td>{{ substr($p->harvesting) . "..." }}</td>
             							<td><img src="{{ $p->picture }}" width=200></td>
             							<td>{{ $p->difficulty }}</td>
             							<td>{{ $p->stages }}</td>
